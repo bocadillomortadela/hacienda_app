@@ -10,10 +10,8 @@ const { User } = require('../src/models/User')
 const Income = require('../src/models/Income')
 const Expense = require('../src/models/Expense')
 
-// Limpia claves con comillas o espacios
 const normalizeKeys = (obj) => Object.fromEntries(Object.entries(obj).map(([key, value]) => [key.trim().replace(/^['"]+|['"]+$/g, ''), value]))
 
-// Leer CSV con separador ;
 const readCSV = (filePath) => {
   return new Promise((resolve, reject) => {
     const results = []
@@ -30,7 +28,6 @@ const seed = async () => {
     await connectDB()
     console.log('🟢 Conectado a MongoDB')
 
-    // --- Usuarios ---
     const usersRaw = await readCSV(path.join(__dirname, 'users.csv'))
     console.log('📄 CSV leído:', usersRaw)
     await User.deleteMany()
@@ -48,13 +45,11 @@ const seed = async () => {
     const insertedUsers = await User.insertMany(users)
     console.log(`👤 Insertados ${insertedUsers.length} usuarios`)
 
-    // Mapa email → ID
     const userMap = {}
     insertedUsers.forEach((user) => {
       userMap[user.email] = user._id
     })
 
-    // --- Ingresos ---
     const incomesRaw = await readCSV(path.join(__dirname, 'incomes.csv'))
     await Income.deleteMany()
 
@@ -71,7 +66,6 @@ const seed = async () => {
     await Income.insertMany(incomes)
     console.log(`💰 Insertados ${incomes.length} ingresos`)
 
-    // --- Gastos ---
     const expensesRaw = await readCSV(path.join(__dirname, 'expenses.csv'))
     await Expense.deleteMany()
 
