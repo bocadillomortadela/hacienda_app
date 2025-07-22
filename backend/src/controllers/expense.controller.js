@@ -2,7 +2,7 @@ const Expense = require('../models/Expense')
 
 const getExpenses = async (req, res) => {
   try {
-    const expense = await Expense.findOne({ _id: req.params.id, user: req.user.id })
+    const expense = await Expense.find()
     if (!expense) return res.status(404).json({ message: 'Gasto no encontrado' })
     res.status(200).json(expense)
   } catch (error) {
