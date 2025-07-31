@@ -6,8 +6,8 @@ const loginUser = async (info) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(info)
   })
-  if (!response.ok) throw new Error('Error al iniciar sesión')
-  return await response.json()
+  if (!res.ok) throw new Error('Error al iniciar sesión')
+  return await res.json()
 }
 
 export default loginUser
