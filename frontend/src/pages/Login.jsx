@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import loginUser from '../services/autoService'
+import { loginUser } from '../services/autoService'
 import { Box, Button, FormControl, Heading, Input } from '@chakra-ui/react'
 
 const Login = () => {
