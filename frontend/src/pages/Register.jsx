@@ -1,5 +1,5 @@
-import { Box, FormControl, FormLabel, Heading, Input, useToast } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button, FormControl, FormLabel, Heading, Input, useToast } from '@chakra-ui/react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
@@ -41,6 +41,23 @@ const Register = () => {
           <FormLabel>Nombre</FormLabel>
           <Input value={name} onChange={(e) => setName(e.target.value)} />
         </FormControl>
+        <FormControl>
+          <FormLabel>Email</FormLabel>
+          <Input type='email' onChange={(e) => setEmail(e.target.value)} />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>DNI</FormLabel>
+          <Input value={dni} onChange={(e) => setDni(e.target.value)} />
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Contraseña</FormLabel>
+          <Input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        </FormControl>
+        <Button colorScheme='teal' width='full' type='submit'>
+          Register
+        </Button>
       </form>
     </Box>
   )
