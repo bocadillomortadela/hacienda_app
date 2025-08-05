@@ -1,6 +1,7 @@
 import { Box, Button, FormControl, FormLabel, Heading, Input, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { registerUser } from '../services/autoService'
 
 const Register = () => {
   const [name, setName] = useState('')
@@ -25,7 +26,7 @@ const Register = () => {
     } catch (error) {
       toast({
         title: 'Registration failed.',
-        description: err.response?.data?.message || 'Something went wrong.',
+        description: error.response?.data?.message || 'Something went wrong.',
         status: 'error',
         duration: 4000,
         isClosable: true

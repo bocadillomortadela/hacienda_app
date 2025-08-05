@@ -15,6 +15,9 @@ export const registerUser = async (info) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(info)
   })
-  if (!res.ok) throw new Error('Error al registrarse')
+  if (!res.ok) {
+    const errorData = await res.json()
+    throw new Error(errorData.message)
+  }
   return await res.json()
 }
