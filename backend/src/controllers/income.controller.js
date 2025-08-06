@@ -9,6 +9,16 @@ const getAllIncome = async (req, res) => {
   }
 }
 
+const getTotalIncomes = async (req, res) => {
+  try {
+    const result = await Income.aggregate([{ $match: { user: req.user._id } }, { $group: { _id: null, total: { $sum: '$amount' } } }])
+
+    res.status(200).json({ total: result[0]?.total || 0 })
+  } catch (error) {
+    res.status(500).json({ message: 'Error obteniendo total de ingresos' })
+  }
+}
+
 const crateIncome = async (req, res) => {
   try {
     const newIncome = await Income.create({ ...req.body, user: req.user.id })
@@ -40,6 +50,7 @@ const deleteIncome = async (req, res) => {
 
 module.exports = {
   getAllIncome,
+  getTotalIncomes,
   crateIncome,
   updateIncome,
   deleteIncome

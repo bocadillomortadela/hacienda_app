@@ -10,6 +10,16 @@ const getExpenses = async (req, res) => {
   }
 }
 
+const getTotalExpenses = async (req, res) => {
+  try {
+    const result = await Expense.aggregate([{ $match: { user: req.user._id } }, { $group: { _id: null, total: { $sum: '$amount' } } }])
+
+    res.status(200).json({ total: result[0]?.total || 0 })
+  } catch (error) {
+    res.status(500).json({ message: 'Error obteniendo total de gastos' })
+  }
+}
+
 const createExpense = async (req, res) => {
   try {
     const newExpense = await Expense.create({ ...req.body, user: req.user.id })
@@ -41,6 +51,7 @@ const deleteExpense = async (req, res) => {
 
 module.exports = {
   getExpenses,
+  getTotalExpenses,
   createExpense,
   updateExpense,
   deleteExpense
