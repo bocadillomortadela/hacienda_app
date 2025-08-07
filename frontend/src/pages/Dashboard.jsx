@@ -20,7 +20,7 @@ const Dashboard = () => {
         setTotalExpense(expensesData.total)
         setTotalIncome(incomesData.total)
       } catch (error) {
-        console.error(err)
+        console.error(error)
       }
     }
     fetchTotals()

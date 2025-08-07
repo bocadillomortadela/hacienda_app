@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { loginUser } from '../services/autoService'
 import { Box, Button, FormControl, Heading, Input } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -12,6 +14,7 @@ const Login = () => {
       const data = await loginUser({ email, password })
       console.log('Login correcto', data)
       localStorage.setItem('token', data.token)
+      navigate('/')
     } catch (error) {
       console.error('Error al iniciar sesión', error)
     }
