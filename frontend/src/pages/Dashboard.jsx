@@ -15,8 +15,8 @@ const Dashboard = () => {
     }
     const fetchTotals = async () => {
       try {
-        const incomesData = await getTotalExpenses()
-        const expensesData = await getTotalIncomes()
+        const incomesData = await getTotalIncomes()
+        const expensesData = await getTotalExpenses()
         setTotalExpense(expensesData.total)
         setTotalIncome(incomesData.total)
       } catch (error) {
