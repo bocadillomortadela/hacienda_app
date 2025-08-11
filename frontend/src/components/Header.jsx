@@ -1,5 +1,5 @@
 import { Button, Flex, IconButton, Spacer } from '@chakra-ui/react'
-import { FaUserCircle } from 'react-icons/fa'
+import { FaHome, FaUserCircle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
@@ -11,7 +11,9 @@ const Header = () => {
     navigate('/login')
   }
   return (
-    <Flex as='header' p={4} borderBottomWidth={1} justifyContent='flex-end' alignItems='center' bg='gray.50'>
+    <Flex as='header' p={4} borderBottomWidth={1} alignItems='center' bg='gray.50'>
+      <IconButton icon={<FaHome />} aria-label='Inicio' variant='ghost' fontSize='xl' onClick={() => navigate('/')} />
+      <Spacer />
       {token && <IconButton icon={<FaUserCircle />} aria-label='Perfil' variant='ghost' fontSize='xl' onClick={() => navigate('/profile')} />}
       {token ? (
         <Button colorScheme='red' size='sm' onClick={handleLogout}>

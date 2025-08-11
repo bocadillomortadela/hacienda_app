@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Income from './pages/Income'
 import Expenses from './pages/Expenses'
+import Profile from './pages/Profile'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Route path='/register' element={<Register />} />
       <Route path='/incomes' element={<Income />} />
       <Route path='/expenses' element={<Expenses />} />
+      <Route path='profile' element={<Profile />} />
     </Routes>
   )
 }
