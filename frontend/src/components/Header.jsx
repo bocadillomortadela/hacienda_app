@@ -1,5 +1,5 @@
-import { Button, Flex, IconButton, Spacer } from '@chakra-ui/react'
-import { FaHome, FaUserCircle } from 'react-icons/fa'
+import { Button, Flex, IconButton, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spacer } from '@chakra-ui/react'
+import { FaCog, FaHome, FaKey, FaSignOutAlt, FaUser, FaUserCircle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
@@ -14,13 +14,27 @@ const Header = () => {
     <Flex as='header' p={4} borderBottomWidth={1} alignItems='center' bg='gray.50'>
       <IconButton icon={<FaHome />} aria-label='Inicio' variant='ghost' fontSize='xl' onClick={() => navigate('/')} />
       <Spacer />
-      {token && <IconButton icon={<FaUserCircle />} aria-label='Perfil' variant='ghost' fontSize='xl' onClick={() => navigate('/profile')} />}
       {token ? (
-        <Button colorScheme='red' size='sm' onClick={handleLogout}>
-          Logout
-        </Button>
+        <Menu>
+          <MenuButton as={IconButton} icon={<FaUserCircle />} aria-label='Menú de perfil' variant='ghost' fontSize='xl' />
+          <MenuList>
+            <MenuItem icon={<FaUser />} onClick={() => navigate('/profile')}>
+              Ver perfil
+            </MenuItem>
+            <MenuItem icon={<FaCog />} onClick={() => navigate('/profile/settings')}>
+              Ajustes
+            </MenuItem>
+            <MenuItem icon={<FaKey />} onClick={() => navigate('/profile/password')}>
+              Cambiar contraseña
+            </MenuItem>
+            <MenuDivider />
+            <MenuItem icon={<FaSignOutAlt />} onClick={handleLogout} color='red.500'>
+              Cerrar sesión
+            </MenuItem>
+          </MenuList>
+        </Menu>
       ) : (
-        <Button colorScheme='teal' size='sm' onClick={() => navigate('/login')}>
+        <Button leftIcon={<FaSignInAlt />} colorScheme='teal' size='sm' onClick={() => navigate('/login')}>
           Login
         </Button>
       )}
