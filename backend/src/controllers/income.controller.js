@@ -2,7 +2,7 @@ const Income = require('../models/Income')
 
 const getAllIncome = async (req, res) => {
   try {
-    const incomes = await Income.find()
+    const incomes = await Income.find({ user: req.user._id }).sort({ date: -1 })
     res.status(200).json(incomes)
   } catch (error) {
     res.status(500).json({ error: error.message })
@@ -21,7 +21,8 @@ const getTotalIncomes = async (req, res) => {
 
 const crateIncome = async (req, res) => {
   try {
-    const newIncome = await Income.create({ ...req.body, user: req.user.id })
+    const payload = { ...req.body, user: req.user._id }
+    const newIncome = await Income.create(payload)
     res.status(201).json(newIncome)
   } catch (error) {
     res.status(400).json({ error: error.message })
