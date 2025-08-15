@@ -16,7 +16,7 @@ export const registerUser = async (info) => {
     body: JSON.stringify(info)
   })
   if (!res.ok) {
-    const errorData = await res.json()
+    const errorData = await res.json()  
     throw new Error(errorData.message)
   }
   return await res.json()

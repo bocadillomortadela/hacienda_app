@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { fetchIncome } from '../services/incomeService'
-import { Badge, Box, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { Badge, Box, Button, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import Header from '../components/Header'
+import { Link } from 'react-router-dom'
 
 const Income = () => {
   const [incomes, setIncomes] = useState([])
@@ -24,6 +25,11 @@ const Income = () => {
         <Heading mb={6} textAlign='center' color='teal.600'>
           Mis Ingresos
         </Heading>
+        <Box textAlign='right' mb={4}>
+          <Button as={Link} to='/incomes/new' colorScheme='teal'>
+            + Nuevo ingreso
+          </Button>
+        </Box>
 
         <Stack>
           {incomes.map((e) => (
