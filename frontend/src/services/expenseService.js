@@ -10,6 +10,15 @@ export const fetchExpenses = async () => {
   return res.json()
 }
 
-export const createExpense = async (payload) => {
-  const res = await fetch(BASE)
+export const createExpenses = async (payload) => {
+  const res = await fetch(`${BASE}/create`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    body: JSON.stringify(payload)
+  })
+  if (!res.ok) throw new Error('Error al crear ingreso')
+  return res.json()
 }

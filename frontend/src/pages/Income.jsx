@@ -38,7 +38,7 @@ const Income = () => {
                 <Text fontWeight='bold' fontSize='lg' color='gray.700' minW='200px'>
                   {e.concept}
                 </Text>
-                <Badge colorScheme='red' fontSize='md'>
+                <Badge colorScheme='green' fontSize='md'>
                   {e.amount}€{' '}
                 </Badge>
               </Flex>

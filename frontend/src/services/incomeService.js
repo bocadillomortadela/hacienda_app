@@ -11,9 +11,10 @@ export const fetchIncome = async () => {
 }
 
 export const createIncome = async (payload) => {
-  const res = await fetch(BASE, {
+  const res = await fetch(`${BASE}/create`, {
     method: 'POST',
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`
     },
     body: JSON.stringify(payload)

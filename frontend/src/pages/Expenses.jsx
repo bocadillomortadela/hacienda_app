@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { fetchExpenses } from '../services/expenseService'
-import { Badge, Box, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { Badge, Box, Button, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import Header from '../components/Header'
+import { Link } from 'react-router-dom'
 
 const Expenses = () => {
   const [expenses, setExpense] = useState([])
@@ -27,6 +28,11 @@ const Expenses = () => {
         <Heading mb={6} textAlign='center' color='teal.600'>
           Mis gastos
         </Heading>
+        <Box textAlign='right' mb={4}>
+          <Button as={Link} to='/expenses/new' colorScheme='teal'>
+            + Nuevo Gasto
+          </Button>
+        </Box>
         <Stack spacing={4}>
           {expenses.map((e) => (
             <Box key={e._id} borderWidth='1px' borderRadius='lg' p={4} shadow='md' bg='white' _hover={{ shadow: 'lg', borderColor: 'teal.300' }}>

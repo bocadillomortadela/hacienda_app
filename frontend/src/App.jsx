@@ -7,6 +7,7 @@ import Income from './pages/Income'
 import Expenses from './pages/Expenses'
 import Profile from './pages/Profile'
 import CreateIncome from './pages/Income/CreateIncome'
+import CreateExpense from './pages/Expense/CreateExpense'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Route path='/incomes' element={<Income />} />
       <Route path='incomes/new' element={<CreateIncome />} />
       <Route path='/expenses' element={<Expenses />} />
+      <Route path='expenses/new' element={<CreateExpense />} />
       <Route path='profile' element={<Profile />} />
     </Routes>
   )
