@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchIncome } from '../services/incomeService'
+import { deleteIncome, fetchIncome } from '../services/incomeService'
 import { Badge, Box, Button, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import Header from '../components/Header'
 import { Link } from 'react-router-dom'
@@ -33,7 +33,7 @@ const Income = () => {
 
         <Stack>
           {incomes.map((e) => (
-            <Box>
+            <Box key={e._id} borderWidth='1px' borderRadius='lg' p={4} shadow='md' bg='white' _hover={{ shadow: 'lg', borderColor: 'teal.300' }}>
               <Flex justify='space-between' align='center' flexWrap='wrap' gap={8}>
                 <Text fontWeight='bold' fontSize='lg' color='gray.700' minW='200px'>
                   {e.concept}
@@ -41,6 +41,20 @@ const Income = () => {
                 <Badge colorScheme='green' fontSize='md'>
                   {e.amount}€{' '}
                 </Badge>
+                <Button
+                  colorScheme='red'
+                  size='sm'
+                  onClick={async () => {
+                    try {
+                      await deleteIncome(e._id)
+                      setIncomes(incomes.filter((inc) => inc._id !== e._id))
+                    } catch (error) {
+                      console.error(error)
+                    }
+                  }}
+                >
+                  Elminar
+                </Button>
               </Flex>
               <Text color='gray.700' fontSize='sm' mt={1}>
                 {e.client}

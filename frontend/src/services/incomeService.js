@@ -22,3 +22,14 @@ export const createIncome = async (payload) => {
   if (!res.ok) throw new Error('Error al crear ingreso')
   return res.json()
 }
+
+export const deleteIncome = async (id) => {
+  const res = await fetch(`${BASE}/delete/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  })
+  if (!res.ok) throw new Error('Error al Borrar el ingreso')
+  return res.json()
+}

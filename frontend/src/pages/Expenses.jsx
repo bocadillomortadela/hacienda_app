@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { fetchExpenses } from '../services/expenseService'
-import { Badge, Box, Button, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { deleteExpense, fetchExpenses } from '../services/expenseService'
+import { Badge, Box, Button, Flex, Heading, Stack, Text, Toast, useToast } from '@chakra-ui/react'
 import Header from '../components/Header'
 import { Link } from 'react-router-dom'
 
 const Expenses = () => {
   const [expenses, setExpense] = useState([])
+  const toast = useToast()
 
   useEffect(() => {
     const loadExpenses = async () => {
@@ -19,6 +20,16 @@ const Expenses = () => {
     }
     loadExpenses()
   }, [])
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteExpense(id)
+      setExpense(expenses.filter((exp) => exp._id !== id))
+      toast({ title: 'Gasto eliminado', status: 'success', duration: 3000 })
+    } catch (error) {
+      toast({ title: 'Error al eliminar gasto', status: 'error', duration: 3000 })
+    }
+  }
 
   return (
     <>
@@ -37,12 +48,15 @@ const Expenses = () => {
           {expenses.map((e) => (
             <Box key={e._id} borderWidth='1px' borderRadius='lg' p={4} shadow='md' bg='white' _hover={{ shadow: 'lg', borderColor: 'teal.300' }}>
               <Flex justify='space-between' align='center' flexWrap='wrap' gap={8}>
-                <Text Text fontWeight='bold' fontSize='lg' color='gray.700' minW='200px'>
+                <Text fontWeight='bold' fontSize='lg' color='gray.700' minW='200px'>
                   {e.concept}
                 </Text>
                 <Badge colorScheme='red' fontSize='md'>
                   {e.amount}€{' '}
                 </Badge>
+                <Button mt={2} size='sm' colorScheme='red' onClick={() => handleDelete(e._id)}>
+                  Elminar
+                </Button>
               </Flex>
               <Text color='gray.500' fontSize='sm' mt={1}>
                 {e.category || 'Sin categoría'}

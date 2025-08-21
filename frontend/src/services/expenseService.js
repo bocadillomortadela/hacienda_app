@@ -22,3 +22,14 @@ export const createExpenses = async (payload) => {
   if (!res.ok) throw new Error('Error al crear ingreso')
   return res.json()
 }
+
+export const deleteExpense = async (id) => {
+  const res = await fetch(`${BASE}/delete/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  })
+  if (!res.ok) throw new Error('Error al Borrar el Gasto')
+  return res.json()
+}
