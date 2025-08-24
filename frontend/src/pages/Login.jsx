@@ -14,6 +14,7 @@ const Login = () => {
       const data = await loginUser({ email, password })
       console.log('Login correcto', data)
       localStorage.setItem('token', data.token)
+      localStorage.setItem('user', JSON.stringify(data.user))
       navigate('/')
     } catch (error) {
       console.error('Error al iniciar sesión', error)
