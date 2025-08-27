@@ -33,15 +33,15 @@ const Dashboard = () => {
         <Heading textAlign='center' mb={8}>
           Dashboard
         </Heading>
-        <SimpleGrid colums={{ base: 1, md: 2 }} spacing={6}>
-          <Stat p={4} borderWidth={1} borderRadius='lg'>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+          <Stat p={4} borderWidth={1} borderRadius='lg' textAlign='center'>
             <StatLabel>Total Ingresos</StatLabel>
             <StatNumber>{totalIncome}</StatNumber>
             <Button as={Link} to='/incomes' mt={4} colorScheme='teal'>
               Ver Ingresos
             </Button>
           </Stat>
-          <Stat p={4} borderWidth={1} borderRadius='lg'>
+          <Stat p={4} borderWidth={1} borderRadius='lg' textAlign='center'>
             <StatLabel>Total Gastos</StatLabel>
             <StatNumber>{totalExpense}</StatNumber>
             <Button as={Link} to='/expenses' mt={4} colorScheme='red'>
