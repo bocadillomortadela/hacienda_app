@@ -1,4 +1,4 @@
-const BASE = 'http://localhost:3000/api/v1/expenses'
+const BASE = `${import.meta.env.VITE_API_URL}/v1/expenses`
 
 export const fetchExpenses = async () => {
   const res = await fetch(BASE, {

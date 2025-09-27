@@ -1,5 +1,5 @@
 import { Button, Flex, IconButton, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Spacer } from '@chakra-ui/react'
-import { FaCog, FaHome, FaKey, FaMoon, FaSignOutAlt, FaSun, FaUser, FaUserCircle } from 'react-icons/fa'
+import { FaCog, FaHome, FaKey, FaMoon, FaSignInAlt, FaSignOutAlt, FaSun, FaUser, FaUserCircle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 const Header = () => {
