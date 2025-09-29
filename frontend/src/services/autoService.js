@@ -1,12 +1,21 @@
 import React from 'react'
-const BASE_URL = import.meta.env.VITE_API_URL
+const BASE_URL = `https://hacienda-app.onrender.com/api`
 export const loginUser = async (info) => {
   const res = await fetch(`${BASE_URL}/v1/users/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(info)
   })
-  if (!res.ok) throw new Error('Error al iniciar sesión')
+
+  if (!res.ok) {
+    let msg = 'Error al iniciar sesión'
+    try {
+      const err = await res.json()
+      if (err?.message) msg = err.message
+    } catch {}
+    throw new Error(msg)
+  }
+
   return await res.json()
 }
 export const registerUser = async (info) => {

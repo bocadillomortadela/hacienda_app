@@ -1,4 +1,4 @@
-const BASE = `${import.meta.env.VITE_API_URL}/v1/incomes`
+const BASE = `https://hacienda-app.onrender.com/api/v1/incomes`
 
 export const fetchIncome = async () => {
   const res = await fetch(BASE, {
