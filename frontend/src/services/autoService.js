@@ -8,11 +8,14 @@ export const loginUser = async (info) => {
   })
 
   if (!res.ok) {
-    let msg = 'Error al iniciar sesión'
+    let msg = `Error ${res.status}`
     try {
       const err = await res.json()
-      if (err?.message) msg = err.message
-    } catch {}
+      msg = err.message || err || msg
+    } catch {
+      const txt = await res.text()
+      if (txt) msg = txt
+    }
     throw new Error(msg)
   }
 
