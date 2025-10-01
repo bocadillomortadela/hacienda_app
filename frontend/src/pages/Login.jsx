@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { loginUser } from '../services/autoService'
-import { Box, Button, FormControl, Heading, Input } from '@chakra-ui/react'
+import { Box, Button, FormControl, Heading, Input, Text } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -36,6 +36,12 @@ const Login = () => {
           Entrar
         </Button>
       </form>
+      <Text textAlign='center'>
+        ¿No tienes cuenta?{' '}
+        <Button variant='link' colorScheme='teal' onClick={() => navigate('/register')}>
+          Regístrate aquí
+        </Button>
+      </Text>
     </Box>
   )
 }
